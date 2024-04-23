@@ -1,19 +1,15 @@
+import storage from "./util/storage.js";
+
 const init = {
-    todos : [
-        {
-            title : 'Learn Javascript',
-            completed : false,
-        },
-        {
-            title : 'Learn HTML CSS',
-            completed : true
-        }
-    ]
+    todos : storage.get()
 }
 
 const actions = {
     ADD({todos},title){
-        todos.push({title,completed:false})
+        if (title) {            
+            todos.push({title,completed:false});
+            storage.set(todos);
+        }
     }
 }
 
