@@ -3,7 +3,7 @@ const init = {
 }
 
 export default function reducer(state = init,action,args){
-    console.log(action,args);
+    // trả về state mới --> logic
     switch (action) {    
         case 'ADD':
             const [newCar] = args;
@@ -11,7 +11,6 @@ export default function reducer(state = init,action,args){
                 ...state,
                 cars: [...state.cars,newCar]
             }
-            break;
         default:
             return state;
     }
