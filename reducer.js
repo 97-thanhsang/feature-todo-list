@@ -1,16 +1,19 @@
 const init = {
-    cars : ['BMW']
+    todos : [
+        {
+            title : 'Learn Javascript',
+            completed : false,
+        },
+        {
+            title : 'Learn HTML CSS',
+            completed : true
+        }
+    ]
 }
 
 export default function reducer(state = init,action,args){
     // trả về state mới --> logic
-    switch (action) {    
-        case 'ADD':
-            const [newCar] = args;
-            return {
-                ...state,
-                cars: [...state.cars,newCar]
-            }
+    switch (action) {          
         default:
             return state;
     }
