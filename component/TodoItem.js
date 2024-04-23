@@ -1,7 +1,6 @@
 import html from "../core.js";
 
 function TodoItem({todo}) {
-  console.log(todo);
     return html`
       <li class="${todo.completed && 'completed'}">
         <div class="view">

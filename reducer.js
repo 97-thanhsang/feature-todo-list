@@ -11,10 +11,27 @@ const init = {
     ]
 }
 
-export default function reducer(state = init,action,args){
-    // trả về state mới --> logic
-    switch (action) {          
-        default:
-            return state;
+const actions = {
+    ADD({todos},title){
+        todos.push({title,completed:false})
     }
+}
+
+export default function reducer(state = init,action,args){
+    actions[action] && actions[action](state,...args);
+    // trả về state mới --> logic
+    // switch (action) {          
+    //     case 'ADD':
+    //         const [title] = args;
+    //         return {
+    //           ...state,
+    //           todos: [...state.todos, {
+    //             title,
+    //             completed : false
+    //           }],
+    //         };
+    //     default:
+    //         return state;
+    // }
+    return state;
 }
