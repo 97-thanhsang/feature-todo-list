@@ -10,6 +10,11 @@ const actions = {
             todos.push({title,completed:false});
             storage.set(todos);
         }
+    },
+    TOGGLE({todos},index){
+        const todo = todos[index];
+        todo.completed = !todo.completed;
+        storage.set(todos);
     }
 }
 
