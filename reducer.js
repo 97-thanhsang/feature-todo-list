@@ -2,7 +2,7 @@ import storage from "./util/storage.js";
 
 const init = {
     todos : storage.get(),
-    filter : 'ALL',
+    filter : 'all',
     filters : {
         all : () => true,
         active : todo => !todo.completed,
@@ -25,6 +25,9 @@ const actions = {
     DESTROY({todos},index){
         todos.splice(index,1);
         storage.set(todos);
+    },
+    switchFilter(state,filter){
+        state.filter = filter;
     }
 }
 
