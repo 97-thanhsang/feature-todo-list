@@ -11,7 +11,7 @@ function TodoItem({todo,index}) {
             onchange="dispatch('TOGGLE',${index})"
           />
           <label>${todo.title}</label>
-          <button class="destroy"></button>
+          <button class="destroy" onclick="dispatch('DESTROY',${index})"></button>
         </div>
         <input class="edit" value="${todo.title}" />
       </li>

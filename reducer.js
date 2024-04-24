@@ -21,6 +21,10 @@ const actions = {
         const todo = todos[index];
         todo.completed = !todo.completed;
         storage.set(todos);
+    },
+    DESTROY({todos},index){
+        todos.splice(index,1);
+        storage.set(todos);
     }
 }
 
