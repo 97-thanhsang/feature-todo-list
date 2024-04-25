@@ -22,6 +22,10 @@ const actions = {
         todo.completed = !todo.completed;
         storage.set(todos);
     },
+    TOGGLEALL({todos}){
+        todos.forEach(todo => todo.completed = completed);
+        storage.set(todos);
+    },
     DESTROY({todos},index){
         todos.splice(index,1);
         storage.set(todos);
