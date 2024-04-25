@@ -22,7 +22,7 @@ const actions = {
         todo.completed = !todo.completed;
         storage.set(todos);
     },
-    TOGGLEALL({todos}){
+    TOGGLEALL({todos},completed){
         todos.forEach(todo => todo.completed = completed);
         storage.set(todos);
     },
@@ -36,6 +36,17 @@ const actions = {
     clearCompleted(state){
         state.todos = state.todos.filter(state.filters.active);
         storage.set(state.todos);
+    },
+    startEdit(state,index)
+    {
+        state.editIndex = index;
+    },
+    endEdit(state,title){
+        if (state.editIndex !== null) {
+            state.todos[state.editIndex].title = title;            
+            state.editIndex = null;
+            storage.set(state.todos);
+        }
     }
 }
 

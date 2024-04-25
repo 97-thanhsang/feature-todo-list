@@ -1,21 +1,27 @@
 import html from "../core.js";
+import { connect } from "../store.js";
 
-function TodoItem({todo,index}) {
-    return html`
-      <li class="${todo.completed && "completed"}">
-        <div class="view">
-          <input
-            class="toggle"
-            type="checkbox"
-            ${todo.completed && "checked"}
-            onchange="dispatch('TOGGLE',${index})"
-          />
-          <label>${todo.title}</label>
-          <button class="destroy" onclick="dispatch('DESTROY',${index})"></button>
-        </div>
-        <input class="edit" value="${todo.title}" />
-      </li>
-    `;
+function TodoItem({ todo, index, editIndex }) {
+  return html`
+    <li
+      class="${todo.completed && "completed"} ${editIndex === index &&
+      "editing"}"
+    >
+      <div class="view">
+        <input
+          class="toggle"
+          type="checkbox"
+          ${todo.completed && "checked"}
+          onchange="dispatch('TOGGLE',${index})"
+        />
+        <label ondblclick="dispatch('startEdit',${index})">${todo.title}</label>
+        <button class="destroy" onclick="dispatch('DESTROY',${index})"></button>
+      </div>
+      <input class="edit" value="${todo.title}" 
+      onkeyup="event.keyCode === 13 && dispatch('endEdit',this.value.trim())"
+      />
+    </li>
+  `;
 }
 
-export default TodoItem;
+export default connect()(TodoItem);
