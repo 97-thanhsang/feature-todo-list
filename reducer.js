@@ -47,6 +47,9 @@ const actions = {
             state.editIndex = null;
             storage.set(state.todos);
         }
+    },
+    cancelEdit(state){
+        state.editIndex = null;
     }
 }
 
