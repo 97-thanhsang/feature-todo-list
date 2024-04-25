@@ -43,9 +43,16 @@ const actions = {
     },
     endEdit(state,title){
         if (state.editIndex !== null) {
-            state.todos[state.editIndex].title = title;            
+            if (title) {
+                state.todos[state.editIndex].title = title;
+                storage.set(state.todos);
+            }
+            else
+            {
+                this.DESTROY(state,state.editIndex);
+            }
             state.editIndex = null;
-            storage.set(state.todos);
+            
         }
     },
     cancelEdit(state){
